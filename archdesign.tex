@@ -1,0 +1,95 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Software Architecture Design}
+
+\author{}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Software Architecture Design}
+
+This section discusses the software architecture requirements. It will specify how the software infrastructure that is to be developed will address the functional requirements. All of this is done within the architecture constraints given by the client. What follows is firstly a summary of the functional requirements, then a summary of the constraints given by the client, then a list of the chosen technologies, frameworks, protocols and libraries and a justification of why that choice was made and how it addresses the problem. 
+
+\section{Functional Requirements}
+
+\subsection{Access}
+
+The system will be accessible by humans from a browser through a rich web interface, this interface must be accessible through all recent versions of mayor browsers. There must also be an Adriod application to be accessed through mobile Android devices with all recent versions of Android.
+	
+\subsection{Integration}
+
+The system must access a UP CS server and database to retrieve students' personal information and access course information. The server is LDAP and the database is MySQL. When the marks are exported that should be done in a CSV file. All communication must be done using secure HTTPS.
+
+\subsection{Security}
+
+Users must authenticate to the LDAP server before using any of the services. The service should also ensure that users only access the parts that they have access to. 
+	
+\subsection{Auditability}
+
+The system should keep track of any changes made to any entity in the database. It should record who makes that change, when do they make it and from what to what it was changed. The audit log cannot be modified.
+
+\subsection{Testability}
+
+All the services offered by the system should be testable. It should test if the service is provided under the right conditions and that post-conditions hold true after service has been provided. 
+
+\subsection{Usability}
+
+The software should be easy to understand and use without prior training. It should be in English but it should be open to be translated to other languages.
+
+\subsection{Scalability}
+
+The system should be open to be scaled and expanded to hadle all the assesments for all the modules of the Department of Computer Science. The system should be able to hanle 100 users at the same time.
+	
+\subsection{Performance}
+
+All non-reporting operations should report within less than 1 second. Report queries should be processed in no more than 10 seconds.
+
+\section{Architecture Constraints}
+	
+The system should be developed using the Django web framework. Persistence to a relational database must be done using the Object-Relational Mapper bundled with Django. The Django unittest module should be used for testing. The system should be deployed on a Django application server running within the cs.up.ac.za Apache web server. The mobile client should be running on an Android application. The system will use the MySQL database. Web services must be either SOAP-based or Restful web services.
+
+\section{Architecture Design}
+
+\subsection{Access}
+
+There should be a web application and a mobile application. For the web application we are going to use the Djanga Web Framework. This is the framework that the users wants, but also has many advantages. Django works with Python, one of the simplest programming languages out there. The structure is also very good and resolves around building the website in phases. Django also adheres strongly to the DRY (Don't repeat yourself) principle. For the mobile app we will use Android, since it is the most popular mobile OS out there.
+
+\subsection{Integration}
+
+The CS server already uses MySQL and so we will keep consistency and also use this. MySQL is also cost effective since it is open source. MySQL can work cross platform and has good security. We will also use the Object-Relational Mapper bundled with Django since we use Django.
+
+\subsection{Security}
+
+The security of MySQL is very, very good. The server has its own security, then the database has more security.
+
+\subsection{Auditability}
+
+Using the Django framework we will create an auditability program that will keep track of all the changes and store it on the server.
+
+\subsection{Testability}
+
+The Django framework includes a unittest module we can use to thouroughly test this system.
+
+\subsection{Usability}
+
+We will apply proper design principles like affordances to make the system clear and easy to use.
+
+\subsection{Scalability}
+
+Both Django and MySQL are scalable to the level we desire.
+        
+\subsection{Performance}
+
+Both Django and MySQL can perform to the level we desire.
+
+
+\end{document}
